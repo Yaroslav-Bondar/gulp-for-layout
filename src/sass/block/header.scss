@@ -1,0 +1,7 @@
+.header {
+    color: yellowgreen;
+    @include ph {
+        color: darkmagenta;
+        border-color: brown;
+    }
+}
