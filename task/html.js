@@ -4,22 +4,18 @@ const {src, dest} = require('gulp');
 const path = require('../config/path.js');
 const app = require('../config/app.js');
 
-
 // plugins
-const fileInclude = require('gulp-file-include');
-const htmlMin = require('gulp-htmlmin');
-const size = require('gulp-size');
-const webpHtml = require('gulp-webp-html'); // to select image type in html (source srcset=) 
-
+// get all gulp files from package.json
+const gp = require('gulp-load-plugins')();
 
 // html processing
 const html = () => {
     return src(path.html.src)
-    .pipe(fileInclude())
-    .pipe(webpHtml())
-    .pipe(size({title: 'before compression'}))
-    // .pipe(htmlMin(app.htmlMin))
-    .pipe(size({title: 'after compression'}))
+    .pipe(gp.fileInclude())
+    .pipe(gp.webpHtml()) // to select image type in html (source srcset=)
+    .pipe(gp.size({title: 'before compression'}))
+    // .pigp.pe(htmlMin(app.htmlMin))
+    .pipe(gp.size({title: 'after compression'}))
     .pipe(dest(path.html.dest))
 }
 

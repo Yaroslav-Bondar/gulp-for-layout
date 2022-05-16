@@ -5,14 +5,14 @@ const path = require('../config/path.js');
 const app = require('../config/app.js');
 
 // plugins
-const pugs = require('gulp-pug');
-const webpHtml = require('gulp-webp-html'); // to select image type in html(source srcset=) 
+// get all gulp files from package.json
+const gp = require('gulp-load-plugins')();
 
 // pug processing
 const pug = () => {
     return src(path.pug.src)
-        .pipe(pugs(app.pug))
-        .pipe(webpHtml())
+        .pipe(gp.pug(app.pug))
+        .pipe(gp.webpHtml()) // to select image type in html(source srcset=)
         .pipe(dest(path.pug.dest));
 }
 
