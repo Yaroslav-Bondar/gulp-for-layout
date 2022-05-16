@@ -8,6 +8,7 @@ const app = require('../config/app.js');
 const imageMin = require('gulp-imagemin');
 const newer = require('gulp-newer'); // processing only new or changed files 
 const webp = require('gulp-webp'); // convert img files to webp format
+const gulpIf = require('gulp-if'); //  launch of the plugin depending on the condition 
 // img processing
 const img = () => {
     return src(path.img.src)
@@ -16,7 +17,7 @@ const img = () => {
     .pipe(dest(path.img.dest))
     .pipe(src(path.img.src))
     .pipe(newer(path.img.dest))
-    .pipe(imageMin(app.imageMin))
+    .pipe(gulpIf(app.isProd, imageMin(app.imageMin)))
     .pipe(dest(path.img.dest));
 }
 

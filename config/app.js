@@ -1,18 +1,30 @@
+// read arguments from command line
+// to set plugin configurations depending on the mode build run
+// build run
+const isProd = process.argv.includes('--production');
+const isDev = !isProd;
+
 module.exports = {
+    
+    isProd: isProd,
+    
+    isDev: isDev,
+    
     htmlmin: {
-        collapseWhitespace: true,
+        // delete whitespaces from html
+        collapseWhitespace: isProd,
     },
 
     pug: {
-        pretty: true,
+        // compression pug files
+        pretty: isDev,
         data: {
             news: require('../data/news.json'),
         },
     },
 
     webpack: {
-        // mode: 'development',
-        mode: 'production',
+        mode: isProd ? 'production': 'development',
     },
 
     imgeMin: {

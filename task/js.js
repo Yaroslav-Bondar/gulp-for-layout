@@ -12,13 +12,13 @@ const webpack = require('webpack-stream'); // bundling js modules
 
 // js processing
 const js = () => {
-    return src(path.js.src, {sourcemaps: true})
+    return src(path.js.src, {sourcemaps: app.isDev})
     .pipe(babel())
     .pipe(webpack(app.webpack))  
-    // .pipe(dest(path.js.dest, {sourcemaps: true}))
+    // .pipe(dest(path.js.dest, {sourcemaps: app.isDev}))
     // .pipe(rename({suffix: ".min"}))
     // .pipe(uglify())
-    .pipe(dest(path.js.dest, {sourcemaps: true}));
+    .pipe(dest(path.js.dest, {sourcemaps: app.isDev}));
 }
 
 module.exports = js;

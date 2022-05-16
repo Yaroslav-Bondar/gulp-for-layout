@@ -1,9 +1,9 @@
 const {watch, series, parallel} = require('gulp'); 
-
 const browserSync = require('browser-sync').create();
 
 // configuration 
 const path = require('./config/path.js');
+const app = require('./config/app.js');
 
 // tasks:
 const clear = require('./task/clear.js');
@@ -14,8 +14,6 @@ const sass = require('./task/sass.js');
 const js = require('./task/js.js');
 const img = require('./task/img.js');
 const font = require('./task/font.js');
-
-// plugins
 
 // server update 
 const server = () => {
@@ -42,7 +40,15 @@ const watcherPug = () => {
     watch(path.sass.watch, sass).on('all', browserSync.reload);
     watch(path.js.watch, js).on('all', browserSync.reload);
     watch(path.img.watch, img).on('all', browserSync.reload);
-    watch(path.font.watch, font).on('all', browserSync.reload);}
+    watch(path.font.watch, font).on('all', browserSync.reload);
+}
+
+// production
+const build = series(clear, parallel(html, sass, js, img, font));
+
+// develop   
+const devHtml = series(build, parallel(server, watcherHtml));
+
 // task export
 // exports.server = server;
 exports.clear = clear;
@@ -52,7 +58,22 @@ exports.sass = sass;
 exports.js = js;
 exports.img = img;
 exports.html = html;
-exports.font = font; 
+exports.font = font;
+exports.build = build; 
 // assembly
 exports.devPug = series(clear, parallel(pug, css, js, img, font), parallel(server, watcherPug));
-exports.devHtml = series(clear, parallel(html, sass, js, img, font), parallel(server, watcherHtml));
+exports.devHtml = devHtml;
+
+// run in production mode or development :
+
+// development mode:
+    // gulp
+        // or
+    // npm run start (see scripts in packge.json)
+
+// production mode:
+    // gulp --production
+        // or
+    // npm run build (see scripts in packge.json)
+
+exports.default = app.isProd ? build : devHtml;

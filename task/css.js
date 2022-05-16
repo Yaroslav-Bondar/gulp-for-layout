@@ -17,7 +17,7 @@ const webpCss = require('gulp-webp-css');
 
 // css processing
 const css = () => {
-    return src(path.css.src, {sourcemaps: true})
+    return src(path.css.src, {sourcemaps: app.isDev})
         .pipe(concat('main.css'))
         .pipe(cssimport())
         .pipe(webpCss())
@@ -25,11 +25,11 @@ const css = () => {
         .pipe(shorthand())
         .pipe(groupCssMediaQueries())
         .pipe(size({title: 'main.css before compression'}))
-        .pipe(dest(path.css.dest, {sourcemaps: true}))
+        .pipe(dest(path.css.dest, {sourcemaps: app.isDev}))
         .pipe(rename({suffix: ".min"}))
         .pipe(csso())
         .pipe(size({title: 'main.css after compression'}))
-        .pipe(dest(path.css.dest, {sourcemaps: true}));
+        .pipe(dest(path.css.dest, {sourcemaps: app.isDev}));
 }
 
 module.exports = css;

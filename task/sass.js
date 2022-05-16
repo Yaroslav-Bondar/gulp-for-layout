@@ -19,7 +19,7 @@ const webpCss = require('gulp-webp-css');
 
 // sass processing
 const sass = () => {
-    return src(path.sass.src, {sourcemaps: true})
+    return src(path.sass.src, {sourcemaps: app.isDev})
         .pipe(sassGlob()) // import path masks
         .pipe(sassPrepros())
         .pipe(webpCss())
@@ -27,11 +27,11 @@ const sass = () => {
         .pipe(shorthand())
         .pipe(groupCssMediaQueries())
         .pipe(size({title: 'main.scss before compression'}))
-        .pipe(dest(path.sass.dest, {sourcemaps: true}))
+        .pipe(dest(path.sass.dest, {sourcemaps: app.isDev}))
         .pipe(rename({suffix: ".min"}))
         .pipe(csso())
         .pipe(size({title: 'main.scss after compression'}))
-        .pipe(dest(path.sass.dest, {sourcemaps: true}));
+        .pipe(dest(path.sass.dest, {sourcemaps: app.isDev}));
 }
 
 module.exports = sass;
