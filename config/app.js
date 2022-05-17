@@ -27,7 +27,7 @@ module.exports = {
         mode: isProd ? 'production': 'development',
     },
 
-    imgeMin: {
+    imgemin: {
         verbose: true,
     },
 

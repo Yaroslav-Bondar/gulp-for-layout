@@ -1,67 +1,60 @@
-const {watch, series, parallel} = require('gulp'); 
-const browserSync = require('browser-sync').create();
-
-// configuration 
-const path = require('./config/path.js');
-const app = require('./config/app.js');
-
+// node global object (like window in JavaScript)
+// now these variables are available from everywhere
+global.$ = {
+    // packages
+    gulp: require('gulp'),
+    // get all gulp files from package.json
+    gp: require('gulp-load-plugins')(),
+    browserSync: require('browser-sync').create(),
+    // configuration 
+    path: require('./config/path.js'),
+    app: require('./config/app.js'),
+}
 // tasks:
-const clear = require('./task/clear.js');
-const html = require('./task/html.js');
-const pug = require('./task/pug.js');
-const css = require('./task/css.js');
-const sass = require('./task/sass.js');
-const js = require('./task/js.js');
-const img = require('./task/img.js');
-const font = require('./task/font.js');
 
-// server update 
-const server = () => {
-    browserSync.init({
-        server: {
-            baseDir: path.root,
-        }
-    });
-}
+// get modules from the catalog
+const requireDir = require('require-dir');
+// recurse: true - load all subdirectories
+const task = requireDir('./task', {recurse: true});
 
-// observation html
+// observation task.html
 const watcherHtml = () => {
-    watch(path.html.watch, html).on('all', browserSync.reload);
-    // watch(path.css.watch, css).on('all', browserSync.reload);
-    watch(path.sass.watch, sass).on('all', browserSync.reload);
-    watch(path.js.watch, js).on('all', browserSync.reload);
-    watch(path.img.watch, img).on('all', browserSync.reload);
-    watch(path.font.watch, font).on('all', browserSync.reload);
+    $.gulp.watch($.path.html.watch, task.html).on('all', $.browserSync.reload);
+    // $.gulp.watch(path.css.$.gulp.watch, task.css).on('all', $.browserSync.reload);
+    $.gulp.watch($.path.sass.watch, task.sass).on('all', $.browserSync.reload);
+    $.gulp.watch($.path.js.watch, task.js).on('all', $.browserSync.reload);
+    $.gulp.watch($.path.img.watch, task.img).on('all', $.browserSync.reload);
+    $.gulp.watch($.path.font.watch, task.font).on('all', $.browserSync.reload);
 }
-// observation pug
+// observation task.pug
 const watcherPug = () => {
-    watch(path.pug.watch, pug).on('all', browserSync.reload);
-    // watch(path.css.watch, css).on('all', browserSync.reload);
-    watch(path.sass.watch, sass).on('all', browserSync.reload);
-    watch(path.js.watch, js).on('all', browserSync.reload);
-    watch(path.img.watch, img).on('all', browserSync.reload);
-    watch(path.font.watch, font).on('all', browserSync.reload);
+    $.gulp.watch($.path.pug.watch, task.pug).on('all', $.browserSync.reload);
+    // $.gulp.watch(path.css.$.gulp.watch, task.css).on('all', $.browserSync.reload);
+    $.gulp.watch($.path.sass.watch, task.sass).on('all', $.browserSync.reload);
+    $.gulp.watch($.path.js.watch, task.js).on('all', $.browserSync.reload);
+    $.gulp.watch($.path.img.watch, task.img).on('all', $.browserSync.reload);
+    $.gulp.watch($.path.font.watch, task.font).on('all', $.browserSync.reload);
 }
 
 // production
-const build = series(clear, parallel(html, sass, js, img, font));
+const build = $.gulp.series(task.clear, $.gulp.parallel(task.html, task.sass, task.js, task.img, task.font));
 
 // develop   
-const devHtml = series(build, parallel(server, watcherHtml));
+const devHtml = $.gulp.series(build, $.gulp.parallel(task.server, watcherHtml));
 
 // task export
-// exports.server = server;
-exports.clear = clear;
-exports.pug = pug;
-exports.css = css;
-exports.sass = sass;
-exports.js = js;
-exports.img = img;
-exports.html = html;
-exports.font = font;
+// exports.server = task.server;
+exports.clear = task.clear;
+exports.pug = task.pug;
+exports.css = task.css;
+exports.sass = task.sass;
+exports.js = task.js;
+exports.img = task.img;
+exports.html = task.html;
+exports.font = task.font;
 exports.build = build; 
 // assembly
-exports.devPug = series(clear, parallel(pug, css, js, img, font), parallel(server, watcherPug));
+exports.devPug = $.gulp.series(task.clear, $.gulp.parallel(task.pug, task.css, task.js, task.img, task.font), $.gulp.parallel(task.server, watcherPug));
 exports.devHtml = devHtml;
 
 // run in production mode or development :
@@ -76,4 +69,4 @@ exports.devHtml = devHtml;
         // or
     // npm run build (see scripts in packge.json)
 
-exports.default = app.isProd ? build : devHtml;
+exports.default = $.app.isProd ? build : devHtml;
