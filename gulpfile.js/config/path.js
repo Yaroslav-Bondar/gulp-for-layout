@@ -3,10 +3,12 @@ const pathDest = './public';
 
 module.exports = {
     root: pathDest,
+    // according to html and sass folders
+    pages: ['main', 'pets'],
     html: {
-        src: pathSrc + '/html/*.html',
+        src: pathSrc + '/html/pages/',
         watch: pathSrc + '/html/**/*.html',
-        dest: pathDest,
+        dest: pathDest + '/pages/',
     },
     pug: {
         src: pathSrc + '/pug/*.pug',
@@ -18,15 +20,10 @@ module.exports = {
         watch: pathSrc + '/css/**/*.css',
         dest: pathDest + '/css',
     },
-    normalize: {
-        src: pathSrc + '/css/normalize/{normalize,reset}.css',
-        watch: pathSrc + '/css/normalize/{normalize,reset}.css',
-        dest: pathDest + '/css/normalize',
-    },
     sass: {
-        src: pathSrc + '/sass/*.{sass,scss}',
+        src: pathSrc + '/sass/pages/',
         watch: pathSrc + '/sass/**/*.{sass,scss}',
-        dest: pathDest + '/css',
+        dest: pathDest + '/pages/',
     },
     js: {
         src: pathSrc + '/js/*.js',
@@ -34,12 +31,12 @@ module.exports = {
         dest: pathDest + '/js',
     },
     img: {
-        src: pathSrc + '/assets/img/*.{png,jpg,jpeg,gif,svg}',
+        src: pathSrc + '/assets/img/**/*.{png,jpg,jpeg,gif,svg}',
         watch: pathSrc + '/assets/img/**/*.{png,jpg,jpeg,gif,svg}',
         dest: pathDest + '/assets/img',
     },
     font: {
-        src: pathSrc + "/assets/font/*.{eot,ttf,otf,otc,ttc,woff,woff2,svg}",
+        src: pathSrc + "/assets/font/**/*.{eot,ttf,otf,otc,ttc,woff,woff2,svg}",
         watch: pathSrc + "/assets/font/**/*.{eot,ttf,otf,otc,ttc,woff,woff2,svg}",
         dest: pathDest + "/assets/font",
     },

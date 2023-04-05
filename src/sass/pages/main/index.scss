@@ -1,14 +1,17 @@
-$base-font-size: 22px;
 
 @mixin ph {
     @media screen and (max-width: 700px) {
         @content;
     }
 }
+@import 
+  '../../base/normalize.scss',
+  '../../helpers/_config/variables.scss',
+  'layout/header',
+  'layout/footer'; // gulp-sass-glob
 
-* {
-    box-sizing: border-box;
-}
+
+
 
 body {
     font-size: $base-font-size;
@@ -21,11 +24,4 @@ body {
     }
 }
 
-@import 'block/*.scss'; // gulp-sass-glob
 
-@media screen and (max-width: 700px) {
-    body {
-        font-size: 40px;
-        background-color: brown;
-    }    
-}
