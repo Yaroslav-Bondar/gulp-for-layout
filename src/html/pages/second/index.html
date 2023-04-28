@@ -12,15 +12,15 @@
     @@include('../../common/header.html')
     @@include('../../common/navigation.html', {
       "link": {
-        "path": "../second",
-        "name": "second page"
+        "path": "../main",
+        "name": "main page"
       }
     })
-    <main class="main">
-      <div class="main__container container">
-        <h1 class="main__title">Main page !!</h1>
-          @@include('chunks/java-script.html')
-          @@include('chunks/python.html')
+    <main class="page">
+      <div class="page__container container">
+        <h1 class="page__title">Second page !!</h1>
+          @@include('chunks/html.html')
+          @@include('chunks/css.html')
       </div>
     </main>
     @@include('../../common/footer.html')

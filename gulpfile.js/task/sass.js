@@ -2,7 +2,7 @@ const merge = require('merge-stream');
 // plugins
 const sassPrepros = require('gulp-sass')(require('sass'));
 
-const sassTest = () => {
+const sass = () => {
   let tasks = $.path.pages.map(page => {
     return $.gulp.src($.path.sass.src + page + '/*.{sass,scss}')
         .pipe($.gp.sassGlob()) // import $.path masks
@@ -22,4 +22,4 @@ const sassTest = () => {
   return merge(tasks);
 }
 
-module.exports = sassTest;
+module.exports = sass;

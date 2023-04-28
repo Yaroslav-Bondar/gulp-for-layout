@@ -3,8 +3,8 @@ const pathDest = './public';
 
 module.exports = {
     root: pathDest,
-    // according to html and sass folders
-    pages: ['main', 'pets'],
+    // pages of a multipage site
+    pages: ['main', 'second'],
     html: {
         src: pathSrc + '/html/pages/',
         watch: pathSrc + '/html/**/*.html',

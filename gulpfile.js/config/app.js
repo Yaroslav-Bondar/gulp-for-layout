@@ -19,7 +19,9 @@ module.exports = {
         // compression pug files
         pretty: isDev,
         data: {
-            news: require('../data/news.json'),
+            // TODO: what is this setting for?
+            // commented out because it throws an error: Error: Cannot find module '../data/news.json'
+            // news: require('../data/news.json'),
         },
     },
 
