@@ -1,7 +1,8 @@
 # gulp-for-layout
 
 ### Description
-  Gulp build to build a multi-page application. Aassembly file structure:
+  Gulp build to build a multi-page application. Assembly file structure:
+  
   ![assembly file structure](/src/assets/img/assembly-file-structure.jpg)
 
 ### Usage
