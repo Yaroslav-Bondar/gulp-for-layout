@@ -1,5 +1,3 @@
-// plugins
-
 // css processing
 const css = () => {
     return $.gulp.src($.path.css.src, {sourcemaps: $.app.isDev})

@@ -1,5 +1,4 @@
 const merge = require('merge-stream');
-// plugins
 const sassPrepros = require('gulp-sass')(require('sass'));
 
 const sass = () => {

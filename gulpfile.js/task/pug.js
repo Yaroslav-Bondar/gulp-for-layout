@@ -1,6 +1,4 @@
-
 // pug processing
-
 const pug = () => {
     return $.gulp.src($.path.pug.src)
         .pipe($.gp.pug($.app.pug))

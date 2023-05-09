@@ -1,11 +1,13 @@
 # gulp-for-layout
 
+### Description
+  Gulp build to build a multi-page application. Aassembly file structure:
+  ![assembly file structure](/src/assets/img/assembly-file-structure.jpg)
+
 ### Usage
-  - development
-    - `npm start`
-  - build
-    - `npm run build`
+  - Development mode - `npm start`
+  - Build mode - `npm run build`
 
 ### links
-  - clean building gulp for layout 
-    - link to tutorial: `https://www.youtube.com/watch?v=qSZvGlIKGPg&list=PL0xWjA6ceuAx_LTUOJ20WUBwK_UUUwics&index=21&t=1428s`
+  - [Basic tutorial for this build](https://www.youtube.com/watch?v=qSZvGlIKGPg&list=PL0xWjA6ceuAx_LTUOJ20WUBwK_UUUwics&index=21&t=1428s)
+  - [Architecting a CSS project](https://sass-guidelin.es/#architecture) 
