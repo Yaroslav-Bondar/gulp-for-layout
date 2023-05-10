@@ -34,12 +34,12 @@ module.exports = {
         dest: pathDest + '/js',
     },
     img: {
-        src: pathSrc + '/assets/img/*.{png,jpg,jpeg,gif,svg}',
+        src: pathSrc + '/assets/img/**/*.{png,jpg,jpeg,gif,svg}',
         watch: pathSrc + '/assets/img/**/*.{png,jpg,jpeg,gif,svg}',
         dest: pathDest + '/assets/img',
     },
     font: {
-        src: pathSrc + "/assets/font/*.{eot,ttf,otf,otc,ttc,woff,woff2,svg}",
+        src: pathSrc + "/assets/font/**/*.{eot,ttf,otf,otc,ttc,woff,woff2,svg}",
         watch: pathSrc + "/assets/font/**/*.{eot,ttf,otf,otc,ttc,woff,woff2,svg}",
         dest: pathDest + "/assets/font",
     },

@@ -19,7 +19,7 @@ module.exports = {
         // compression pug files
         pretty: isDev,
         data: {
-            news: require('../data/news.json'),
+            news: require('../../src/assets/data/java-script-news.json'),
         },
     },
 
